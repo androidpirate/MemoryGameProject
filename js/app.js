@@ -46,6 +46,12 @@ function resetMoves() {
   moves.textContent = 0;
 }
 
+// Increases moves
+function increaseMoves() {
+  var moves = document.getElementById("movesSpan");
+  moves.textContent++;
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
