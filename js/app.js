@@ -12,6 +12,8 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ // Reset moves
+ resetMoves();
  // Shuffle cards
   var shuffleDeck = shuffle(deck);
   shuffleDeck.forEach(function(element) {
@@ -38,6 +40,11 @@ function shuffle(array) {
     return array;
 }
 
+// Resets moves
+function resetMoves() {
+  var moves = document.getElementById("movesSpan");
+  moves.textContent = 0;
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
