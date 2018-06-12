@@ -83,14 +83,17 @@ function addToOpenCards(card) {
  var cardList = Array.from(deckElement.childNodes);
  cardList.forEach(function(card){
    card.addEventListener("click", function(element){
-     if(openCards.length <= 1) {
+     if(openCards.length < 2) {
        revealCard(element.target);
        addToOpenCards(card);
        increaseMoves();
+       if(openCards.length === 2) {
+         // Check if the cards match
+         setTimeout(function(){
+           match(openCards[0], openCards[1]);
+         }, 1000);
+       }
+       return;
      }
-     // Check if the cards match
-     setTimeout(function(){
-       match(openCards[0], openCards[1]);
-     }, 1000);
    });
  });
