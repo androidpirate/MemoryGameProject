@@ -62,6 +62,10 @@ function match(e1, e2) {
   openCards.length = 0;
 }
 
+function revealCard(target) {
+  target.className = "card match";
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -76,7 +80,7 @@ function match(e1, e2) {
  cardList.forEach(function(card){
    card.addEventListener("click", function(element){
      if(openCards.length <= 1) {
-       element.target.className = "card match";
+       revealCard(element.target);
        openCards.push(card);
        increaseMoves();
      }
