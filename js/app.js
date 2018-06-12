@@ -53,6 +53,15 @@ function increaseMoves() {
   moveCounterElement.textContent++;
 }
 
+// Checks open cards
+function match(e1, e2) {
+  if(e1.childNodes[0].className !== e2.childNodes[0].className) {
+    openCards[0].className = "card";
+    openCards[1].className = "card";
+  }
+  openCards.length = 0;
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
