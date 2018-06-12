@@ -5,6 +5,9 @@
                "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube",
                "fa fa-anchor","fa fa-anchor", "fa fa-leaf", "fa fa-leaf",
                "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
+const openCards = [];
+const deckElement = document.getElementById("deckElement");
+const moveCounterElement = document.getElementById("moveCounterElement");
 
 /*
  * Display the cards on the page
@@ -42,14 +45,12 @@ function shuffle(array) {
 
 // Resets moves
 function resetMoves() {
-  var moves = document.getElementById("movesSpan");
-  moves.textContent = 0;
+  moveCounterElement.textContent = 0;
 }
 
 // Increases moves
 function increaseMoves() {
-  var moves = document.getElementById("movesSpan");
-  moves.textContent++;
+  moveCounterElement.textContent++;
 }
 
 /*
