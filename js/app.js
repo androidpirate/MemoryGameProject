@@ -12,6 +12,16 @@
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+ // Shuffle cards
+  var shuffleDeck = shuffle(deck);
+  shuffleDeck.forEach(function(element) {
+    var icon = document.createElement("i");
+    icon.className = element;
+    var li = document.createElement("li");
+    li.className = "card";
+    li.appendChild(icon);
+    deckElement.appendChild(li);
+  });
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
