@@ -9,6 +9,7 @@ const openCards = [];
 const deckElement = document.getElementById("deckElement");
 const moveCounterElement = document.getElementById("moveCounterElement");
 const starsElement = document.getElementById("starsElement");
+const restartElement = document.getElementById("restartElement");
 var starCount = 3;
 
 /*
@@ -18,17 +19,16 @@ var starCount = 3;
  *   - add each card's HTML to the page
  */
  // Reset moves
- resetMoves();
- // Shuffle cards
-  var shuffleDeck = shuffle(deck);
-  shuffleDeck.forEach(function(element) {
-    var icon = document.createElement("i");
-    icon.className = element;
-    var li = document.createElement("li");
-    li.className = "card";
-    li.appendChild(icon);
-    deckElement.appendChild(li);
-  });
+resetMoves();
+ // Initialize game
+initialize();
+// Add a click listener for restartElement
+restartElement.addEventListener("click", function(){
+  resetMoves();
+  resetStars();
+  removeAllChildElements(deckElement);
+  initialize();
+});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -43,6 +43,20 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+function initialize() {
+  // Shuffle cards
+ var shuffleDeck = shuffle(deck);
+ shuffleDeck.forEach(function(element) {
+   var icon = document.createElement("i");
+   icon.className = element;
+   var li = document.createElement("li");
+   li.className = "card";
+   li.appendChild(icon);
+   deckElement.appendChild(li);
+ });
+ setClickListeners();
 }
 
 // Resets moves
@@ -91,6 +105,23 @@ function removeStar() {
   starCount--;
 }
 
+// Resets stars
+function resetStars() {
+  for(var i = 0; i < starsElement.childElementCount; i++){
+    var star = starsElement.children[i];
+    if(star.children[0].className !== "fa fa-star") {
+        star.children[0].className = "fa fa-star";
+    }
+  }
+}
+
+// Removes all child elements of a given element
+function removeAllChildElements(element) {
+  while(element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -101,20 +132,22 @@ function removeStar() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- var cardList = Array.from(deckElement.childNodes);
- cardList.forEach(function(card){
-   card.addEventListener("click", function(element){
-     if(openCards.length < 2) {
-       revealCard(element.target);
-       addToOpenCards(card);
-       increaseMoves();
-       if(openCards.length === 2) {
-         // Check if the cards match
-         setTimeout(function(){
-           match(openCards[0], openCards[1]);
-         }, 1000);
+ function setClickListeners() {
+   var cardList = Array.from(deckElement.childNodes);
+   cardList.forEach(function(card){
+     card.addEventListener("click", function(element){
+       if(openCards.length < 2) {
+         revealCard(element.target);
+         addToOpenCards(card);
+         increaseMoves();
+         if(openCards.length === 2) {
+           // Check if the cards match
+           setTimeout(function(){
+             match(openCards[0], openCards[1]);
+           }, 1000);
+         }
+         return;
        }
-       return;
-     }
+     });
    });
- });
+ }
