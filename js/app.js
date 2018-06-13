@@ -8,6 +8,8 @@
 const openCards = [];
 const deckElement = document.getElementById("deckElement");
 const moveCounterElement = document.getElementById("moveCounterElement");
+const starsElement = document.getElementById("starsElement");
+var starCount = 3;
 
 /*
  * Display the cards on the page
@@ -51,6 +53,16 @@ function resetMoves() {
 // Increases moves
 function increaseMoves() {
   moveCounterElement.textContent++;
+  switch (parseInt(moveCounterElement.textContent)) {
+    case 12:
+      removeStar();
+      break;
+    case 24:
+      removeStar();
+      break;
+    default:
+      return;
+  }
 }
 
 // Checks open cards
@@ -62,12 +74,21 @@ function match(e1, e2) {
   openCards.length = 0;
 }
 
+// Reveal cards
 function revealCard(target) {
   target.className = "card match";
 }
 
+// Adds card to openCards array
 function addToOpenCards(card) {
   openCards.push(card);
+}
+
+// Removes star
+function removeStar() {
+  var star = starsElement.children[starCount - 1];
+  star.children[0].className = "fa fa-star-o";
+  starCount--;
 }
 
 /*
