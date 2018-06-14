@@ -49,6 +49,8 @@ function initialize() {
    li.appendChild(icon);
    deckElement.appendChild(li);
  });
+ resetMoves();
+ resetStars();
  setCardClickListener();
  setRestartClickListener();
 }
@@ -149,8 +151,6 @@ function removeAllChildElements(element) {
 // Add a click listener for restartElement
  function setRestartClickListener() {
    restartElement.addEventListener("click", function(){
-     resetMoves();
-     resetStars();
      removeAllChildElements(deckElement);
      initialize();
    });
