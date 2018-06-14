@@ -1,7 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
- const deck = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o",
+const deck = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o",
                "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube",
                "fa fa-anchor","fa fa-anchor", "fa fa-leaf", "fa fa-leaf",
                "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
@@ -22,13 +22,6 @@ var starCount = 3;
 resetMoves();
  // Initialize game
 initialize();
-// Add a click listener for restartElement
-restartElement.addEventListener("click", function(){
-  resetMoves();
-  resetStars();
-  removeAllChildElements(deckElement);
-  initialize();
-});
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -57,6 +50,7 @@ function initialize() {
    deckElement.appendChild(li);
  });
  setCardClickListener();
+ setRestartClickListener();
 }
 
 // Resets moves
@@ -149,5 +143,15 @@ function removeAllChildElements(element) {
          return;
        }
      });
+   });
+ }
+
+// Add a click listener for restartElement
+ function setRestartClickListener() {
+   restartElement.addEventListener("click", function(){
+     resetMoves();
+     resetStars();
+     removeAllChildElements(deckElement);
+     initialize();
    });
  }
