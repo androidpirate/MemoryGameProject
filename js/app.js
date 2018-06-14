@@ -56,7 +56,7 @@ function initialize() {
    li.appendChild(icon);
    deckElement.appendChild(li);
  });
- setClickListeners();
+ setCardClickListener();
 }
 
 // Resets moves
@@ -132,7 +132,7 @@ function removeAllChildElements(element) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
- function setClickListeners() {
+ function setCardClickListener() {
    var cardList = Array.from(deckElement.childNodes);
    cardList.forEach(function(card){
      card.addEventListener("click", function(element){
