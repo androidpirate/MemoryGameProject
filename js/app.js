@@ -18,9 +18,7 @@ var starCount = 3;
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
- // Reset moves
-resetMoves();
- // Initialize game
+// Initialize game
 initialize();
 
 // Shuffle function from http://stackoverflow.com/a/2450976
