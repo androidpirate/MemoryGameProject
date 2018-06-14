@@ -11,6 +11,7 @@ const moveCounterElement = document.getElementById("moveCounterElement");
 const starsElement = document.getElementById("starsElement");
 const restartElement = document.getElementById("restartElement");
 var starCount = 3;
+var matchCount = 0;
 
 /*
  * Display the cards on the page
@@ -78,6 +79,11 @@ function match(e1, e2) {
   if(e1.childNodes[0].className !== e2.childNodes[0].className) {
     openCards[0].className = "card";
     openCards[1].className = "card";
+  } else {
+    matchCount++;
+    if(matchCount === 8) {
+      window.location.href = "results.html";
+    }
   }
   openCards.length = 0;
 }
