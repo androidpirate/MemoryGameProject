@@ -13,8 +13,9 @@ const restartElement = document.querySelector(".restart");
 const deckElement = document.querySelector(".deck");
 const resultTimeElement = document.querySelector(".total-time");
 const resultMoveCounterElement = document.querySelector(".r-moves");
-const resultStarElement = document.querySelector(".r-stars");
+const resultStarElement = document.querySelector("#result-stars");
 const restartButton = document.querySelector(".restart-button");
+const resultModal = document.querySelector(".modal");
 
 let starCount = 3;
 let matchCount = 0;
@@ -23,9 +24,6 @@ let second;
 let minute;
 let hour;
 let interval;
-
-// Get the modal
-var modal = document.querySelector(".modal");
 
 /*
  * Display the cards on the page
@@ -62,6 +60,7 @@ function initialize() {
  });
  resetMoves();
  resetStars();
+ resetMatchCount();
  setCardClickListener();
  setRestartClickListener();
  startTimer();
@@ -89,6 +88,11 @@ function increaseMoves() {
   }
 }
 
+// Reveal cards
+function revealCard(target) {
+  target.className = "card match";
+}
+
 // Checks open cards
 function match(e1, e2) {
   if(e1.childNodes[0].className !== e2.childNodes[0].className) {
@@ -111,11 +115,6 @@ function match(e1, e2) {
   openCards.length = 0;
 }
 
-// Reveal cards
-function revealCard(target) {
-  target.className = "card match";
-}
-
 // Adds card to openCards array
 function addToOpenCards(card) {
   openCards.push(card);
@@ -136,6 +135,7 @@ function resetStars() {
         star.children[0].className = "fa fa-star";
     }
   }
+  starCount = 3;
 }
 
 // Removes all child elements of a given element
@@ -145,6 +145,12 @@ function removeAllChildElements(element) {
   }
 }
 
+// Resets match count
+function resetMatchCount() {
+  matchCount = 0;
+}
+
+// Stars timer
 function startTimer() {
   second = 0;
   minute = 0;
@@ -168,7 +174,7 @@ function displayResult() {
   setRating();
   setMoveCounter();
   setRestartButtonClickListener();
-  modal.style.display = "block";
+  resultModal.style.display = "block";
 }
 
 // Sets total time for result
@@ -226,7 +232,7 @@ function setMoveCounter() {
  // Sets click listener for restart button
  function setRestartButtonClickListener() {
    restartButton.addEventListener("click", function(element){
-     modal.style.display = "none";
+     resultModal.style.display = "none";
      removeAllChildElements(deckElement);
      clearInterval(interval);
      initialize();

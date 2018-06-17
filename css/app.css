@@ -151,9 +151,7 @@ h1 {
   color: gold;
 }
 
-.r-stars li {
-  list-style: none;
-  display: inline-block;
+.result-stars li {
   text-align: center;
   font-size: 64px;
   letter-spacing: 5px;
