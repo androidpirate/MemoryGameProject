@@ -85,6 +85,11 @@ function match(e1, e2) {
     openCards[1].className = "card";
   } else {
     matchCount++;
+    // Check if the cards match
+    setTimeout(function(){
+      e1.style.backgroundColor = "green";
+      e2.style.backgroundColor = "green";
+    }, 200);
     if(matchCount === 8) {
       localStorage.setItem("moveCount", moveCount);
       endTime = performance.now();
@@ -158,7 +163,7 @@ function calculateGameTime(startTime, endTime) {
            // Check if the cards match
            setTimeout(function(){
              match(openCards[0], openCards[1]);
-           }, 1000);
+           }, 500);
          }
          return;
        }
