@@ -10,11 +10,15 @@ const deckElement = document.getElementById("deck-element");
 const moveCounterElement = document.getElementById("move-counter-element");
 const starsElement = document.getElementById("stars-element");
 const restartElement = document.getElementById("restart-element");
+const timer = document.getElementById("timer-element");
+
 var starCount = 3;
 var matchCount = 0;
 var moveCount = 0;
-var startTime;
-var endTime;
+var second;
+var minute;
+var hour;
+var interval;
 
 /*
  * Display the cards on the page
@@ -53,19 +57,19 @@ function initialize() {
  resetStars();
  setCardClickListener();
  setRestartClickListener();
- startTime = performance.now();
+ startTimer();
 }
 
 // Resets moves
 function resetMoves() {
   moveCount = 0;
-  moveCounterElement.textContent = moveCount;
+  moveCounterElement.textContent = moveCount + "  Moves";
 }
 
 // Increases moves
 function increaseMoves() {
   moveCount++;
-  moveCounterElement.textContent = moveCount;
+  moveCounterElement.textContent = moveCount + "  Moves";
   switch (moveCount) {
     case 20:
       removeStar();
@@ -92,10 +96,12 @@ function match(e1, e2) {
     }, 200);
     if(matchCount === 8) {
       localStorage.setItem("moveCount", moveCount);
-      endTime = performance.now();
-      calculateGameTime(startTime, endTime);
       localStorage.setItem("starCount", starCount);
+      localStorage.setItem("hour", hour);
+      localStorage.setItem("minute", minute);
+      localStorage.setItem("second", second);
       window.location.href = "results.html";
+      clearInterval(interval);
     }
   }
   openCards.length = 0;
@@ -135,10 +141,21 @@ function removeAllChildElements(element) {
   }
 }
 
-// Calculates game time
-function calculateGameTime(startTime, endTime) {
-  var totalTime = endTime - startTime;
-  localStorage.setItem("totalTime", totalTime / 1000);
+function startTimer() {
+  second = 0;
+  minute = 0;
+  hour = 0;
+  interval = setInterval(function() {
+    timer.textContent = hour + " hours " + minute + " mins " + second + " seconds ";
+    second++;
+    if(second === 60) {
+      minute++;
+      second = 0;
+    } if(minute === 60) {
+      hour++;
+      minute = 0;
+    }
+  }, 1000);
 }
 
 /*
@@ -175,6 +192,7 @@ function calculateGameTime(startTime, endTime) {
  function setRestartClickListener() {
    restartElement.addEventListener("click", function(){
      removeAllChildElements(deckElement);
+     clearInterval(interval);
      initialize();
    });
  }

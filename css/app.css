@@ -94,38 +94,44 @@ h1 {
 .score-panel .stars {
     margin: 0;
     padding: 0;
-    display: inline-block;
+    display: block;
     margin: 0 5px 0 0;
+    text-align: center;
+    font-size: 22px;
 }
 
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
+    text-align: center;
 }
 
 .score-panel .restart {
-    float: right;
-    cursor: pointer;
+    /* float: right; */
+    /* cursor: pointer; */
+    text-align: center;
+    width: 100%;
+    spacing: 20px;
 }
 
+.score-panel .moves {
+  text-align: center;
+  font-size: 22px;
+}
+
+.score-panel .timer {
+  margin: 25px;
+  font-size: 22px;
+}
+
+.score-panel .fa-repeat {
+  font-size: 22px;
+}
+
+/*
+ * Styles for the Results
+ */
 .result-header {
-  margin: 16px;
-}
-
-.result-header h4 {
-  margin: 16px;
-}
-
-.row {
-  width: 100%;
-  margin: auto;
-}
-
-.list-inline {
-  width: 500px;
-}
-
-.resultHeader {
   font-size: 22px;
 }
 

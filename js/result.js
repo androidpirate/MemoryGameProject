@@ -6,6 +6,9 @@ const starElement = document.getElementById("result-stars-element");
 var moveCount = localStorage.getItem("moveCount");
 var totalTime = localStorage.getItem("totalTime");
 var starCount = localStorage.getItem("starCount");
+var hour = localStorage.getItem("hour");
+var minute = localStorage.getItem("minute");
+var second = localStorage.getItem("second");
 
 initialize();
 
@@ -21,7 +24,7 @@ restartButton.addEventListener("click", function(element){
 
 // Sets total time
 function setTotalTime() {
-  totalTimeElement.textContent = Number(totalTime).toFixed(2);
+  totalTimeElement.textContent = hour + ":" + minute + ":" + second; 
 }
 
 function setStars() {
