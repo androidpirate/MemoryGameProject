@@ -132,7 +132,13 @@ h1 {
  * Styles for the Results
  */
 .result-header {
+  text-align: center;
   font-size: 22px;
+}
+
+.result-header h1 {
+  text-align:
+  color: blue;
 }
 
 .result-header strong {
