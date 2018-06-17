@@ -6,19 +6,19 @@ const deck = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-pa
                "fa fa-anchor","fa fa-anchor", "fa fa-leaf", "fa fa-leaf",
                "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 const openCards = [];
-const deckElement = document.getElementById("deck-element");
-const moveCounterElement = document.getElementById("move-counter-element");
-const starsElement = document.getElementById("stars-element");
-const restartElement = document.getElementById("restart-element");
-const timer = document.getElementById("timer-element");
+const deckElement = document.querySelector(".deck");
+const moveCounterElement = document.querySelector(".moves");
+const starsElement = document.querySelector(".stars");
+const restartElement = document.querySelector(".restart");
+const timer = document.querySelector(".timer");
 
-var starCount = 3;
-var matchCount = 0;
-var moveCount = 0;
-var second;
-var minute;
-var hour;
-var interval;
+let starCount = 3;
+let matchCount = 0;
+let moveCount = 0;
+let second;
+let minute;
+let hour;
+let interval;
 
 /*
  * Display the cards on the page
