@@ -94,13 +94,15 @@ function match(e1, e2) {
   if(e1.childNodes[0].className !== e2.childNodes[0].className) {
     openCards[0].className = "card";
     openCards[1].className = "card";
+    openCards[0].style.pointerEvents = "auto";
+    openCards[1].style.pointerEvents = "auto";
   } else {
     matchCount++;
     // Check if the cards match
     setTimeout(function(){
       e1.style.backgroundColor = "green";
       e2.style.backgroundColor = "green";
-    }, 200);
+    }, 100);
     if(matchCount === 8) {
       displayResult();
       clearInterval(interval);
@@ -197,13 +199,14 @@ function setMoveCounter() {
      card.addEventListener("click", function(element){
        if(openCards.length < 2) {
          revealCard(element.target);
+         card.style.pointerEvents = "none";
          addToOpenCards(card);
          increaseMoves();
          if(openCards.length === 2) {
            // Check if the cards match
            setTimeout(function(){
              match(openCards[0], openCards[1]);
-           }, 500);
+           }, 1000);
          }
          return;
        }
@@ -223,7 +226,6 @@ function setMoveCounter() {
  // Sets click listener for restart button
  function setRestartButtonClickListener() {
    restartButton.addEventListener("click", function(element){
-     // window.location.href = "index.html";
      modal.style.display = "none";
      removeAllChildElements(deckElement);
      clearInterval(interval);
