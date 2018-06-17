@@ -11,6 +11,10 @@ const moveCounterElement = document.querySelector(".moves");
 const timer = document.querySelector(".timer");
 const restartElement = document.querySelector(".restart");
 const deckElement = document.querySelector(".deck");
+const resultTimeElement = document.querySelector(".total-time");
+const resultMoveCounterElement = document.querySelector(".r-moves");
+const resultStarElement = document.querySelector(".r-stars");
+const restartButton = document.querySelector(".restart-button");
 
 let starCount = 3;
 let matchCount = 0;
@@ -19,6 +23,9 @@ let second;
 let minute;
 let hour;
 let interval;
+
+// Get the modal
+var modal = document.querySelector(".modal");
 
 /*
  * Display the cards on the page
@@ -95,12 +102,7 @@ function match(e1, e2) {
       e2.style.backgroundColor = "green";
     }, 200);
     if(matchCount === 8) {
-      localStorage.setItem("moveCount", moveCount);
-      localStorage.setItem("starCount", starCount);
-      localStorage.setItem("hour", hour);
-      localStorage.setItem("minute", minute);
-      localStorage.setItem("second", second);
-      window.location.href = "results.html";
+      displayResult();
       clearInterval(interval);
     }
   }
@@ -158,16 +160,37 @@ function startTimer() {
   }, 1000);
 }
 
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+// Displays resutls as a modal
+function displayResult() {
+  setTotalTime();
+  setRating();
+  setMoveCounter();
+  setRestartButtonClickListener();
+  modal.style.display = "block";
+}
+
+// Sets total time for result
+function setTotalTime() {
+  resultTimeElement.textContent = hour + ":" + minute + ":" + second;
+}
+
+// Sets rating for result
+function setRating() {
+  for(var i = 0; i < starCount; i++) {
+    var li = document.createElement("li");
+    var icon = document.createElement("i");
+    icon.className = "fa fa-star";
+    li.appendChild(icon);
+    resultStarElement.appendChild(li);
+  }
+}
+
+// Sets move count result
+function setMoveCounter() {
+  resultMoveCounterElement.textContent = moveCount;
+}
+
+// Sets click listener for each card
  function setCardClickListener() {
    var cardList = Array.from(deckElement.childNodes);
    cardList.forEach(function(card){
@@ -188,9 +211,20 @@ function startTimer() {
    });
  }
 
-// Add a click listener for restartElement
+// Sets click listener for restartElement
  function setRestartClickListener() {
    restartElement.addEventListener("click", function(){
+     removeAllChildElements(deckElement);
+     clearInterval(interval);
+     initialize();
+   });
+ }
+
+ // Sets click listener for restart button
+ function setRestartButtonClickListener() {
+   restartButton.addEventListener("click", function(element){
+     // window.location.href = "index.html";
+     modal.style.display = "none";
      removeAllChildElements(deckElement);
      clearInterval(interval);
      initialize();
