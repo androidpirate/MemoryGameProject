@@ -6,10 +6,10 @@ const deck = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-pa
                "fa fa-anchor","fa fa-anchor", "fa fa-leaf", "fa fa-leaf",
                "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 const openCards = [];
-const deckElement = document.getElementById("deckElement");
+const deckElement = document.getElementById("deck-element");
 const moveCounterElement = document.getElementById("move-counter-element");
-const starsElement = document.getElementById("starsElement");
-const restartElement = document.getElementById("restartElement");
+const starsElement = document.getElementById("stars-element");
+const restartElement = document.getElementById("restart-element");
 var starCount = 3;
 var matchCount = 0;
 var moveCount = 0;
