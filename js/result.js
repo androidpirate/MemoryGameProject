@@ -1,33 +1,38 @@
-const moveCounterElement = document.getElementById("move-counter-element");
-const restartButton = document.getElementById("restart-button");
-const totalTimeElement = document.getElementById("total-time-element");
-const starElement = document.getElementById("result-stars-element");
+const totalTimeElement = document.querySelector(".total-time");
+const moveCounterElement = document.querySelector(".moves");
+const starElement = document.querySelector(".stars");
+const restartButton = document.querySelector(".restart-button");
 
-var moveCount = localStorage.getItem("moveCount");
-var totalTime = localStorage.getItem("totalTime");
-var starCount = localStorage.getItem("starCount");
-var hour = localStorage.getItem("hour");
-var minute = localStorage.getItem("minute");
-var second = localStorage.getItem("second");
+let totalTime = localStorage.getItem("totalTime");
+let moveCount = localStorage.getItem("moveCount");
+let starCount = localStorage.getItem("starCount");
+let hour = localStorage.getItem("hour");
+let minute = localStorage.getItem("minute");
+let second = localStorage.getItem("second");
 
 initialize();
 
 function initialize() {
-  setStars();
+  setRating();
   setMoveCounter();
   setTotalTime();
+  setRestartClickListener();
 }
 
-restartButton.addEventListener("click", function(element){
-  window.location.href = "index.html";
-});
+// Sets click listener for restart button
+function setRestartClickListener() {
+  restartButton.addEventListener("click", function(element){
+    window.location.href = "index.html";
+  });
+}
 
 // Sets total time
 function setTotalTime() {
-  totalTimeElement.textContent = hour + ":" + minute + ":" + second; 
+  totalTimeElement.textContent = hour + ":" + minute + ":" + second;
 }
 
-function setStars() {
+// Sets rating
+function setRating() {
   for(var i = 0; i < starCount; i++) {
     var li = document.createElement("li");
     var icon = document.createElement("i");
