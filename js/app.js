@@ -7,11 +7,12 @@ const deck = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-pa
                "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 const openCards = [];
 const deckElement = document.getElementById("deckElement");
-const moveCounterElement = document.getElementById("moveCounterElement");
+const moveCounterElement = document.getElementById("move-counter-element");
 const starsElement = document.getElementById("starsElement");
 const restartElement = document.getElementById("restartElement");
 var starCount = 3;
 var matchCount = 0;
+var moveCount = 0;
 
 /*
  * Display the cards on the page
@@ -56,13 +57,15 @@ function initialize() {
 
 // Resets moves
 function resetMoves() {
-  moveCounterElement.textContent = 0;
+  moveCount = 0;
+  moveCounterElement.textContent = moveCount;
 }
 
 // Increases moves
 function increaseMoves() {
-  moveCounterElement.textContent++;
-  switch (parseInt(moveCounterElement.textContent)) {
+  moveCount++;
+  moveCounterElement.textContent = moveCount;
+  switch (moveCount) {
     case 12:
       removeStar();
       break;
@@ -82,6 +85,7 @@ function match(e1, e2) {
   } else {
     matchCount++;
     if(matchCount === 8) {
+      localStorage.setItem("moveCount", moveCount);
       window.location.href = "results.html";
     }
   }
