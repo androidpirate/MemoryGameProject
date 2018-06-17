@@ -89,6 +89,7 @@ function match(e1, e2) {
       localStorage.setItem("moveCount", moveCount);
       endTime = performance.now();
       calculateGameTime(startTime, endTime);
+      localStorage.setItem("starCount", starCount);
       window.location.href = "results.html";
     }
   }
