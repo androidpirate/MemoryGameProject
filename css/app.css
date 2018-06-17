@@ -135,11 +135,19 @@ h1 {
   font-size: 22px;
 }
 
+.result-header strong {
+  letter-spacing: 3px;
+}
+
 .result-stars {
-  font-size: 64px;
   margin: 10px;
   text-align: center;
   color: gold;
+}
+
+.result-stars li {
+  font-size: 64px;
+  letter-spacing: 5px;
 }
 
 .result-moves {
