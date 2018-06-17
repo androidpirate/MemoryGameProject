@@ -13,6 +13,8 @@ const restartElement = document.getElementById("restart-element");
 var starCount = 3;
 var matchCount = 0;
 var moveCount = 0;
+var startTime;
+var endTime;
 
 /*
  * Display the cards on the page
@@ -26,7 +28,6 @@ initialize();
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -34,7 +35,6 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 }
 
@@ -53,6 +53,7 @@ function initialize() {
  resetStars();
  setCardClickListener();
  setRestartClickListener();
+ startTime = performance.now();
 }
 
 // Resets moves
@@ -66,10 +67,10 @@ function increaseMoves() {
   moveCount++;
   moveCounterElement.textContent = moveCount;
   switch (moveCount) {
-    case 12:
+    case 20:
       removeStar();
       break;
-    case 24:
+    case 40:
       removeStar();
       break;
     default:
@@ -86,6 +87,8 @@ function match(e1, e2) {
     matchCount++;
     if(matchCount === 8) {
       localStorage.setItem("moveCount", moveCount);
+      endTime = performance.now();
+      calculateGameTime(startTime, endTime);
       window.location.href = "results.html";
     }
   }
@@ -124,6 +127,12 @@ function removeAllChildElements(element) {
   while(element.firstChild) {
     element.removeChild(element.firstChild);
   }
+}
+
+// Calculates game time
+function calculateGameTime(startTime, endTime) {
+  var totalTime = endTime - startTime;
+  localStorage.setItem("totalTime", totalTime / 1000);
 }
 
 /*

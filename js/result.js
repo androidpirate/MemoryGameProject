@@ -2,6 +2,7 @@ const moveCounterElement = document.getElementById("move-counter-element");
 const restartButton = document.getElementById("restart-button");
 
 var moveCount = localStorage.getItem("moveCount");
+var totalTime = localStorage.getItem("totalTime");
 
 initialize();
 
