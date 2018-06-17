@@ -6,11 +6,11 @@ const deck = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-pa
                "fa fa-anchor","fa fa-anchor", "fa fa-leaf", "fa fa-leaf",
                "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 const openCards = [];
-const deckElement = document.querySelector(".deck");
-const moveCounterElement = document.querySelector(".moves");
 const starsElement = document.querySelector(".stars");
-const restartElement = document.querySelector(".restart");
+const moveCounterElement = document.querySelector(".moves");
 const timer = document.querySelector(".timer");
+const restartElement = document.querySelector(".restart");
+const deckElement = document.querySelector(".deck");
 
 let starCount = 3;
 let matchCount = 0;
