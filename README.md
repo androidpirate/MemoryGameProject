@@ -45,3 +45,9 @@
 ## Contributing
 
 This repository is a project for Udacity's Front End Nano Degree program. Therefore, any pull requests will be ignored.
+
+
+## Dependencies
+
+1. [**Google Fonts**](https://fonts.google.com)
+2. [**Font Awesome**](https://fontawesome.com/)
