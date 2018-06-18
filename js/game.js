@@ -135,6 +135,10 @@ function resetStars() {
         star.children[0].className = "fa fa-star";
     }
   }
+  // Reset resultStarElement
+  for(var j = 0; j < resultStarElement.childElementCount; j++) {
+    resultStarElement.removeChild(resultStarElement.childNodes[j]);
+  }
   starCount = 3;
 }
 
